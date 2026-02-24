@@ -1,7 +1,7 @@
 ## Enable postgres via docker
 
 ```
-docker run -d --name insurance-postgres -e POSTGRES_DB=insurance -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5433:5432 -v insurance_pgdata:/var/lib/postgresql/data \ postgres:16
+docker run -d --name insurance-postgres -e POSTGRES_DB=insurance -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5433:5432 -v insurance_pgdata:/var/lib/postgresql/data postgres:16
 ```
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
