@@ -44,6 +44,7 @@ class OwnerController extends Controller
      */
     public function show(Owner $owner)
     {
+        $owner->load(['cars.owner']);
         return view('owners.show', compact('owner'));
     }
 
@@ -52,6 +53,7 @@ class OwnerController extends Controller
      */
     public function edit(Owner $owner)
     {
+        $owner->load(['cars.owner']);
         return view('owners.edit', compact('owner'));
     }
 

@@ -1,35 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2 class="mb-3">Edit Car Owner</h2>
-
-    <form action="{{ route('owners.update', $owner) }}" method="POST">
-        @csrf
-        @method('PUT')
-
-        <div class="mb-3">
-            <label class="form-label">Name</label>
-            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                   value="{{ old('name', $owner->name) }}">
-            @error('name')
-            <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Owner: {{ $owner->name }} {{ $owner->surname }}</h2>
+        <div>
+            <a href="{{ route('owners.edit', $owner) }}" class="btn btn-warning">Edit</a>
+            <a href="{{ route('owners.index') }}" class="btn btn-secondary">Back</a>
         </div>
+    </div>
 
-        <div class="mb-3">
-            <label class="form-label">Surname</label>
-            <input type="text" name="surname" class="form-control @error('surname') is-invalid @enderror"
-                   value="{{ old('surname', $owner->surname) }}">
-            @error('surname')
-            <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+    <div class="card mb-4">
+        <div class="card-body">
+            <p class="mb-1"><strong>ID:</strong> {{ $owner->id }}</p>
+            <p class="mb-0"><strong>Full name:</strong> {{ $owner->name }} {{ $owner->surname }}</p>
         </div>
-
-        <button type="submit" class="btn btn-primary">Update</button>
-        <a href="{{ route('owners.index') }}" class="btn btn-secondary">Back</a>
-    </form>
-
-    <hr class="my-4">
+    </div>
 
     <h4 class="mb-3">Cars of this owner</h4>
 

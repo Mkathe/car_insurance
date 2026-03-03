@@ -25,6 +25,7 @@
                     <td>{{ $owner->name }}</td>
                     <td>{{ $owner->surname }}</td>
                     <td>
+                        <a href="{{ route('owners.show', $owner) }}" class="btn btn-sm btn-info">View</a>
                         <a href="{{ route('owners.edit', $owner) }}" class="btn btn-sm btn-warning">Edit</a>
 
                         <form action="{{ route('owners.destroy', $owner) }}" method="POST" class="d-inline"
