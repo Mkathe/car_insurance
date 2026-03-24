@@ -2,11 +2,33 @@
 
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect()->route('owners.index');
+    return redirect()->route('cars.index');
 });
 
-Route::resource('owners', OwnerController::class);
-Route::resource('cars', CarController::class);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware(['auth', 'is.admin'])->group(function () {
+    Route::resource('cars', CarController::class)->except(['index', 'show']);
+    Route::resource('owners', OwnerController::class)->except(['index', 'show']);
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('cars', CarController::class)->only(['index', 'show']);
+    Route::resource('owners', OwnerController::class)->only(['index', 'show']);
+});
+
+
+
+require __DIR__.'/auth.php';
