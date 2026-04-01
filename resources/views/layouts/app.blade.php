@@ -16,14 +16,26 @@
             <ul class="navbar-nav me-auto">
                 @auth
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('cars.index') }}">Cars</a>
+                        <a class="nav-link" href="{{ route('cars.index') }}">{{ __('cars.cars') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('owners.index') }}">Owners</a>
+                        <a class="nav-link" href="{{ route('owners.index') }}">{{ __('cars.owner') }}</a>
                     </li>
                 @endauth
             </ul>
-
+            <!-- Language Switcher -->
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="language/kk" class="nav-link btn btn-sm btn-info">
+                        {{ __('cars.switch_to_kazakh') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="language/en" class="nav-link btn btn-sm btn-info">
+                        {{ __('cars.switch_to_english') }}
+                    </a>
+                </li>
+            </ul>
             <ul class="navbar-nav ms-auto">
                 @guest
                     <li class="nav-item">
@@ -42,7 +54,7 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="btn btn-link nav-link" style="display:inline; border:none; background:none;">
-                                Logout
+                                {{ __('cars.logout') }}
                             </button>
                         </form>
                     </li>

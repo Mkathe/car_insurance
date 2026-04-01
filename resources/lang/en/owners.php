@@ -1,0 +1,27 @@
+<?php
+
+return [
+    'name' => 'Name',
+    'surname' => 'Surname',
+    'reg_number' => 'Registration Number',
+    'brand' => 'Brand',
+    'model' => 'Model',
+    'owner' => 'Owner',
+    'owners' => 'Owners',
+    'actions' => 'Actions',
+    'view' => 'View',
+    'edit' => 'Edit',
+    'delete' => 'Delete',
+    'car_details' => 'Car # :id',
+    'car_owners' => 'Car Owners',
+    'cars_of_owner' => 'Cars of this owner',
+    'add_owner' => 'Add Owner',
+    'back' => 'Back',
+    'open_owner_page' => 'Open owner page',
+    'switch_to_english' => 'Ағылшыншаға ауысу',
+    'switch_to_kazakh' => 'Қазақшаға ауысу',
+    'no_cars_found_by_owner' => 'No cars found by this owner',
+    'no_owners_found' => 'No owners found',
+    'save' => 'Save',
+    'Update' => 'Update',
+];

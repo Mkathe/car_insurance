@@ -8,28 +8,28 @@
         @method('PUT')
 
         <div class="mb-3">
-            <label class="form-label">Reg Number</label>
+            <label class="form-label">{{__('cars.reg_number')}}</label>
             <input type="text" name="reg_number" class="form-control @error('reg_number') is-invalid @enderror"
                    value="{{ old('reg_number', $car->reg_number) }}">
             @error('reg_number') <div class="invalid-feedback">{{ $message }}</div> @enderror
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Brand</label>
+            <label class="form-label">{{__('cars.brand')}}</label>
             <input type="text" name="brand" class="form-control @error('brand') is-invalid @enderror"
                    value="{{ old('brand', $car->brand) }}">
             @error('brand') <div class="invalid-feedback">{{ $message }}</div> @enderror
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Model</label>
+            <label class="form-label">{{__('cars.model')}}</label>
             <input type="text" name="model" class="form-control @error('model') is-invalid @enderror"
                    value="{{ old('model', $car->model) }}">
             @error('model') <div class="invalid-feedback">{{ $message }}</div> @enderror
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Owner</label>
+            <label class="form-label">{{__('cars.owner')}}</label>
             <select name="owner_id" class="form-select @error('owner_id') is-invalid @enderror" required>
                 <option value="" disabled>Select owner</option>
                 @foreach($owners as $owner)
@@ -48,7 +48,7 @@
                 <div class="card-header">Owner information</div>
                 <div class="card-body">
                     <p class="mb-1"><strong>ID:</strong> {{ $car->owner->id }}</p>
-                    <p class="mb-0"><strong>Name:</strong> {{ $car->owner->surname }} {{ $car->owner->name }}</p>
+                    <p class="mb-0"><strong>{{__('register.name')}}:</strong> {{ $car->owner->surname }} {{ $car->owner->name }}</p>
                     <a class="btn btn-sm btn-outline-primary mt-2" href="{{ route('owners.show', $car->owner) }}">
                         Open owner page
                     </a>
@@ -56,8 +56,8 @@
             </div>
         @endif
 
-        <button type="submit" class="btn btn-primary">Update</button>
-        <a href="{{ route('cars.index') }}" class="btn btn-secondary">Back</a>
+        <button type="submit" class="btn btn-primary">{{__('cars.edit')}}</button>
+        <a href="{{ route('cars.index') }}" class="btn btn-secondary">{{__('cars.back')}}</a>
     </form>
 
     <hr class="my-4">
@@ -87,8 +87,8 @@
                     <td>{{ $car->model }}</td>
                     <td>{{ $car->owner?->surname }} {{ $car->owner?->name }}</td>
                     <td>
-                        <a href="{{ route('cars.show', $car) }}" class="btn btn-sm btn-info">View</a>
-                        <a href="{{ route('cars.edit', $car) }}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="{{ route('cars.show', $car) }}" class="btn btn-sm btn-info">{{__('cars.view')}}</a>
+                        <a href="{{ route('cars.edit', $car) }}" class="btn btn-sm btn-warning">{{__('cars.edit')}}</a>
                     </td>
                 </tr>
             @endforeach
