@@ -17,6 +17,27 @@
         </div>
     </div>
 
+    <div class="card mb-4">
+        <div class="card-header">Car Photos</div>
+
+        <div class="card-body">
+            @if($car->photos->isEmpty())
+                <div class="alert alert-info mb-0">No photos uploaded for this car.</div>
+            @else
+                <div class="row">
+                    @foreach($car->photos as $photo)
+                        <div class="col-md-3 mb-3">
+                            <img src="{{ asset('storage/' . $photo->photo) }}"
+                                 alt="Car photo"
+                                 class="img-fluid rounded border"
+                                 style="width: 100%; height: 180px; object-fit: cover;">
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+        </div>
+    </div>
+
     @if($car->owner)
         <div class="card">
             <div class="card-header">{{ __('cars.owner') }}</div>

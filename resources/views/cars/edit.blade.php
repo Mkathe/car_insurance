@@ -3,7 +3,7 @@
 @section('content')
     <h2 class="mb-3">Edit Car</h2>
 
-    <form action="{{ route('cars.update', $car) }}" method="POST">
+    <form action="{{ route('cars.update', $car) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -42,7 +42,19 @@
             @error('owner_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
         </div>
 
-        {{-- REQUIRED: car edit page shows owner info --}}
+        <div class="mb-3">
+            <label class="form-label">Upload New Car Photos</label>
+            <input type="file" name="photos[]" class="form-control @error('photos.*') is-invalid @enderror" multiple>
+
+            @error('photos.*')
+            <div class="invalid-feedback d-block">{{ $message }}</div>
+            @enderror
+
+            <small class="text-muted">
+                You can upload more than one photo.
+            </small>
+        </div>
+
         @if($car->owner)
             <div class="card mb-3">
                 <div class="card-header">Owner information</div>
@@ -61,6 +73,38 @@
     </form>
 
     <hr class="my-4">
+
+    <h4 class="mb-3">Car Photos</h4>
+
+    @if($car->photos->isEmpty())
+        <div class="alert alert-info">No photos uploaded for this car.</div>
+    @else
+        <div class="row">
+            @foreach($car->photos as $photo)
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <img src="{{ asset('storage/' . $photo->photo) }}"
+                             class="card-img-top"
+                             alt="Car photo"
+                             style="height: 180px; object-fit: cover;">
+
+                        <div class="card-body text-center">
+                            <form action="{{ route('cars.photos.delete', $photo->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+
+                                <button type="submit"
+                                        class="btn btn-sm btn-danger"
+                                        onclick="return confirm('Delete this photo?')">
+                                    Delete Photo
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    @endif
 
     <h4 class="mb-3">Cars</h4>
 

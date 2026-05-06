@@ -16,6 +16,7 @@
             <thead>
             <tr>
                 <th>{{ __('cars.id') }}</th>
+                <th>Photos</th>
                 <th>{{ __('cars.reg_number') }}</th>
                 <th>{{ __('cars.brand') }}</th>
                 <th>{{ __('cars.model') }}</th>
@@ -27,6 +28,19 @@
             @foreach($cars as $car)
                 <tr>
                     <td>{{ $car->id }}</td>
+                    <td style="max-width: 320px;">
+                        @if($car->photos->isNotEmpty())
+                            <div class="d-flex flex-wrap gap-2">
+                                @foreach($car->photos as $photo)
+                                    <img src="{{ asset('storage/' . $photo->photo) }}"
+                                         alt="Car photo"
+                                         style="width: 90px; height: 60px; object-fit: cover; border-radius: 6px;">
+                                @endforeach
+                            </div>
+                        @else
+                            <span class="text-muted">No photo</span>
+                        @endif
+                    </td>
                     <td>{{ $car->reg_number }}</td>
                     <td>{{ $car->brand }}</td>
                     <td>{{ $car->model }}</td>
@@ -44,6 +58,7 @@
                             </form>
                         @endif
                     </td>
+
                 </tr>
             @endforeach
             </tbody>
