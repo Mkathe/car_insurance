@@ -24,14 +24,14 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'is.admin'])->group(function () {
     Route::resource('cars', CarController::class)->except(['index', 'show']);
-    Route::resource('owners', OwnerController::class)->except(['index', 'show']);
     Route::delete('/car-photos/{id}', [CarController::class, 'deletePhoto'])
         ->name('cars.photos.delete');
 });
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('cars', CarController::class)->only(['index', 'show']);
-    Route::resource('owners', OwnerController::class)->only(['index', 'show']);
+
+    Route::resource('owners', OwnerController::class);
 });
 
 Route::get('language/{locale}', [LangController::class, 'setLocale'])->name('setLocale');

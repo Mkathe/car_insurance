@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Owner;
+use App\Policies\OwnerPolicy;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\App;  // Add this line
 
@@ -20,6 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-
+        Gate::policy(Owner::class, OwnerPolicy::class);
     }
 }
